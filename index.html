@@ -1,143 +1,29 @@
-﻿﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unfreeze Angry Birds Game</title>
+    <title>Unfreeze Angry Birds</title>
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>   
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-
-        .header {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #0873bf;
-            color: white;
-            padding: 10px 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            gap: 20px;
-        }
-
-        .header .menu button {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #0873bf;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
-        }
-
-        .header .menu button:hover {
-            background-color: #ffffff;
-        }
-
-        .yt-subscribe-container {
-            margin-bottom: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 5px 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .game-container {
-            width: 100%;
-            max-width: 800px;
-            height: 60vh;
-            background-color: #000;
+            height: 100%;
             overflow: hidden;
-            position: relative;
-            margin: 20px 0;
         }
-
-        @media (max-width: 768px) {
-            .game-container {
-                height: 50vh;
-            }
-
-            .header {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            .header .menu button {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
+        ruffle-player {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <!-- Widget de suscripción de YouTube -->
-    <div class="yt-subscribe-container">
-        <div class="g-ytsubscribe" data-channel="venuskawaiigames" data-layout="full" data-count="default" data-onytevent="onYtEvent"></div>
-    </div>
-
-    <!-- Encabezado con botones -->
-    <div class="header">
-        <div class="menu">
-            <button id="donateButton">💖 Donate</button>
-            <button id="enterFullscreen">Full Screen</button>
-            <button id="exitFullscreen">Restore size</button>
-        </div>
-    </div>
-
     <!-- Contenedor del juego -->
     <div class="game-container" id="gameContainer">
         <embed src="unfreeze-angry-birds.swf" id="gameEmbed" width="100%" height="100%">
-    </div>
-
-    <script>
-        function onYtEvent(payload) {
-            if (payload.eventType == 'subscribe') {
-                alert("¡Gracias por suscribirte!");
-            } else if (payload.eventType == 'unsubscribe') {
-                alert("Lamentamos que te vayas :(");
-            }
-            if (window.console) {
-                console.log('YT event: ', payload);
-            }
-        }
-
-        const gameContainer = document.getElementById('gameContainer');
-        const gameEmbed = document.getElementById('gameEmbed');
-        const enterFullscreen = document.getElementById('enterFullscreen');
-        const exitFullscreen = document.getElementById('exitFullscreen');
-        const donateButton = document.getElementById('donateButton');
-
-        enterFullscreen.addEventListener('click', () => {
-            gameContainer.style.width = '100vw';
-            gameContainer.style.height = '100vh';
-            gameEmbed.style.width = '100%';
-            gameEmbed.style.height = '100%';
-        });
-
-        exitFullscreen.addEventListener('click', () => {
-            gameContainer.style.width = '100%';
-            gameContainer.style.maxWidth = '800px';
-            gameContainer.style.height = '60vh';
-            gameEmbed.style.width = '100%';
-            gameEmbed.style.height = '100%';
-        });
-
-        donateButton.addEventListener('click', () => {
-            window.open('https://www.paypal.com/donate?hosted_button_id=5C4S9WYFJCRV2', '_blank');
-        });
-    </script>
 </body>
 </html>
